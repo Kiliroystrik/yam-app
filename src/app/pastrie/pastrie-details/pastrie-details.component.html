@@ -1,0 +1,19 @@
+<div class="card" style="margin: 1rem 0" *ngIf="pastrie">
+    <img [src]="pastrie.url" alt="" style="width: 100%;">
+    <p>{{pastrie.name}}</p>
+    <ul class="list-group">
+        <h2>Liste des ingrédients</h2>
+        <button type="button" class="btn btn-light border border-dark" (click)="sortIngredients()">{{sortRef}}</button>
+        <li class="list-group-item" *ngFor="let ingredient of ingredients"
+            style="display: flex; justify-content: space-between;">
+            <p>{{ingredient}} </p>
+            <img (click)="deleteIngredient([ingredient])" style="width: 1.5rem; cursor:pointer"
+                src="../../assets/svg/trash-svgrepo-com.svg" alt="">
+        </li>
+    </ul>
+
+    <label for="label{{pastrie.id}}" role="search">Ajouter un ingrédient</label>
+    <input name="label{{pastrie.id}}" id="label{{pastrie.id}}" type="text" (keyup)="0" #saisieClavier
+        (keyup.enter)="addIngredient($event)" autofocus>
+    <p>{{saisieClavier.value}}</p>
+</div>

@@ -1,0 +1,34 @@
+<div style="width: 70%; margin: auto">
+    <app-search (searchedResult)="foundPastries($event)"></app-search>
+    <h1>Page principale : liste des pâtisseries à gagner</h1>
+
+    <div style="display: flex; margin-top: 1rem;">
+
+        <div style="width: 30%; margin: 0 auto">
+            <app-pastrie-details [pastrie]="selectedPastrie"></app-pastrie-details>
+        </div>
+
+        <div *ngIf="pastries" style="width: 70%; margin: 0 auto">
+            <div *ngFor="let pastrie of pastries" class="card" appBorderCard="red" style="margin: 1rem 0">
+                <div class=" card-header">
+                    Pâtisserie
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{pastrie.name}}</h5>
+                    <p class="card-text">{{pastrie.description}}</p>
+                    <div style="margin-bottom: 1rem;">
+                        <span *ngFor="let tag of pastrie.tags" class="badge {{tag | pastrieTagColor}}"
+                            style="margin-right: 6px;">{{tag}}</span>
+                    </div>
+                    <span><button type="button" class="btn btn-light border border-dark">fr</button>
+                        <img src="../../assets/svg/si-glyph-heart.svg" alt="heart"
+                            style="width: 16px; margin: 0 5px;">{{pastrie.like}}<img
+                            src="../../assets/svg/si-glyph-triangle-double-arrow-right.svg" alt="heart"
+                            style="width: 14px; margin: 0 5px;">{{pastrie.quantity}} unités disponibles</span>
+                </div>
+                <button type="button" class="btn btn-light border border-dark"
+                    (click)="getPastrie(pastrie.id)">Details</button>
+            </div>
+        </div>
+    </div>
+</div>
